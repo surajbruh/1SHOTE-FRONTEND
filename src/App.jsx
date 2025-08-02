@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import getData, { postData } from "../api"
 import Card from "./components/Card"
-  import Banner from "./components/Banner"
+import Banner from "./components/Banner"
 import Checkout from "./components/checkout"
 
 export default function App() {
