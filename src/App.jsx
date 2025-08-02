@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import getData, { postData } from "../api"
 import Card from "./components/Card"
-import Navbar from "./components/Navbar"
+  import Banner from "./components/Banner"
+import Checkout from "./components/checkout"
 
 export default function App() {
   const [items, setItems] = useState([])
@@ -28,7 +29,7 @@ export default function App() {
   return (
     <>
       <div className="wrapper">
-        {/* <Navbar /> */}
+        <Banner />
         <div className="page relative w-screen h-screen flex flex-col">
           <h1 className="uppercase font-bold text-5xl text-center my-8">choose your fit</h1>
           <div className="page1 w-[80%] mx-auto h-max flex flex-wrap gap-8 justify-center content-center p-4">
@@ -48,6 +49,7 @@ export default function App() {
             })}
           </div>
         </div>
+        <Checkout />
       </div>
     </>
   )

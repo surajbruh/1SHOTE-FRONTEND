@@ -1,7 +1,7 @@
 export default function Navbar() {
     return (
         <>
-            <div className="navbar sticky top-0 z-10 backdrop-blur-[4px] py-2 px-8 flex items-center justify-between">
+            <div className="navbar w-full fixed top-0 z-10 backdrop-blur-[4px] py-2 px-8 flex items-center justify-between">
                 <ul className="uppercase font-bold text-3xl flex gap-4">
                     <li><a href="">home</a></li>
                     <li><a href="">about</a></li>
