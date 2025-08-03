@@ -32,3 +32,22 @@ export async function postData(endpoint, data) {
         return response.text();
     }
 }
+
+export async function removeData(endpoint, data) {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+
+    if (!response.ok) {
+        const error = await response.json()
+            .catch(() => ({ message: "Unknown error" }))
+        throw new Error(error.message || "Failed to delete data")
+
+    }
+    return response.json()
+}

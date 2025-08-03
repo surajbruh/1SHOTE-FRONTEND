@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Counter from "./Counter"
+import { removeData } from "../../api"
 
 export default function CartItem({ itemName, itemPrice, itemCategory, itemImageUrl }) {
 
@@ -9,6 +10,11 @@ export default function CartItem({ itemName, itemPrice, itemCategory, itemImageU
     useEffect(() => {
         setTotal(itemPrice * counter)
     }, [counter, itemPrice])
+
+    const removeItem = async () => {
+        const data = await removeData('/user/cart', { item: itemName })
+        console.log(data)
+    }
 
     return (
         <>
@@ -38,6 +44,11 @@ export default function CartItem({ itemName, itemPrice, itemCategory, itemImageU
                     <div className="w-full h-full flex justify-center items-center">
                         <h1 className="font-semibold text-xl uppercase">{total.toFixed(2)}</h1>
                     </div>
+                </td>
+                <td>
+                    <button
+                        onClick={removeItem}
+                        className="font-bold text-3xl"><i className="ri-close-large-line"></i></button>
                 </td>
             </tr>
         </>

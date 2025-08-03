@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { postData } from "../../api";
 
-export default function Item({ itemCategory, itemName, itemPrice, itemImage, setActive }) {
+export default function Item({ itemCategory, itemId, itemName, itemPrice, itemImage, setActive }) {
 
     const handleClick = (e) => {
         e.stopPropagation();
@@ -19,6 +19,7 @@ export default function Item({ itemCategory, itemName, itemPrice, itemImage, set
         //send a post req to /user/cart endpoint
         const data = await postData('/user/cart', {
             itemCategory,
+            itemId,
             itemName,
             itemPrice,
             itemImage

@@ -25,6 +25,7 @@ export default function Card({ id, category, name, price, image, isActive, onCar
                     </div>
                 </div>
                 {isActive && <Item
+                    itemId={id}
                     itemCategory={category}
                     itemName={name}
                     itemPrice={price}
