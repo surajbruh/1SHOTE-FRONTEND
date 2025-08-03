@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react"
 import Counter from "./Counter"
 
 export default function CartItem({ itemName, itemPrice, itemCategory, itemImageUrl }) {
+
+    const [total, setTotal] = useState(itemPrice)
+    const [counter, setCounter] = useState(1)
+
+    useEffect(() => {
+        setTotal(itemPrice * counter)
+    }, [counter, itemPrice])
 
     return (
         <>
@@ -24,11 +32,11 @@ export default function CartItem({ itemName, itemPrice, itemCategory, itemImageU
                     </div>
                 </td>
                 <td className="w-[15%] px-4">
-                    <Counter />
+                    <Counter counter={counter} setCounter={setCounter} />
                 </td>
                 <td className=" w-[25%] h-[10vmax] px-2 py-4"  >
                     <div className="w-full h-full flex justify-center items-center">
-                        <h1 className="font-semibold text-xl uppercase">$699.00</h1>
+                        <h1 className="font-semibold text-xl uppercase">{total.toFixed(2)}</h1>
                     </div>
                 </td>
             </tr>
