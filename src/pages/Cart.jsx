@@ -1,17 +1,21 @@
-import Counter from "./Counter"
-export default function Checkout() {
+import Counter from "../components/Counter"
+import { Link } from "react-router-dom"
+
+export default function Cart() {
 
     return (
         <>
-            <div className="checkout w-screen h-screen px-8">
-                <div className="uppercase font-bold flex items-center justify-between">
+            <div className="checkout w-screen h-screen px-8 flex flex-col justify-center">
+                <div className="uppercase font-bold flex items-center justify-between mb-16">
                     <h1 className="text-5xl leading-[30px]">my cart</h1>
-                    <div className="w-max flex justify-center items-center gap-4 px-8 py-2 rounded-[50px] h-max bg-black text-white ">
-                        <i className="ri-arrow-left-s-line text-2xl"></i>
-                        <button className="uppercase text-xl">continue shopping</button>
-                    </div>
+                    <Link to="/">
+                        <div className="w-max flex justify-center items-center gap-4 px-8 py-2 rounded-[50px] h-max bg-black active:bg-[#242424] text-white ">
+                            <i className="ri-arrow-left-s-line text-2xl"></i>
+                            <div className="uppercase text-xl">continue shopping</div>
+                        </div>
+                    </Link>
                 </div>
-                <table className="w-full my-8">
+                <table className="w-full mb-8">
                     <thead className="uppercase font-bold text-xl">
                         <tr>
                             <th scope="col">item</th>
