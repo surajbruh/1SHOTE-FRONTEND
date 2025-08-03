@@ -8,6 +8,7 @@ export default function Cart() {
     const [cartItems, setCartItems] = useState([])
 
     useEffect(() => {
+        //fetches all item added to cart
         async function fetchCardData() {
             const data = await getData('/user/cart')
             setCartItems(data)
@@ -18,7 +19,7 @@ export default function Cart() {
 
     return (
         <>
-            <div className="checkout w-screen min-h-screen px-8 py-8 flex flex-col justify-start">
+            <div className="checkout bg-[#F2ECEC] w-screen min-h-screen px-8 py-8 flex flex-col justify-start">
                 <div className="uppercase font-bold flex items-center justify-between mb-16">
                     <h1 className="text-5xl leading-[30px]">my cart</h1>
                     <Link to="/">
@@ -28,29 +29,37 @@ export default function Cart() {
                         </div>
                     </Link>
                 </div>
-                <table className="w-full mb-8">
-                    <thead className="uppercase font-bold text-xl">
-                        <tr>
-                            <th scope="col">item</th>
-                            <th scope="col">price</th>
-                            <th scope="col">qty</th>
-                            <th scope="col">total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {cartItems.map((cartItem, index) => {
-                            return (
-                                <CartItem
-                                    key={index}
-                                    itemName={cartItem.itemName}
-                                    itemPrice={cartItem.itemPrice}
-                                    itemCategory={cartItem.itemCategory}
-                                    itemImageUrl={cartItem.itemImageUrl} />
-                            )
-                        })}
-                    </tbody>
-                </table>
-
+                {
+                    !cartItems.length ?
+                        <div className="uppercase text-2xl text-center">
+                            <h1>your cart is empty</h1>
+                        </div>
+                        :
+                        <table className="w-full mb-8">
+                            <thead className="uppercase font-bold text-xl">
+                                <tr>
+                                    <th scope="col">item</th>
+                                    <th scope="col">price</th>
+                                    <th scope="col">qty</th>
+                                    <th scope="col">total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cartItems.map((cartItem, index) => {
+                                    return (
+                                        <CartItem
+                                            key={index}
+                                            itemId={cartItem.itemId}
+                                            itemName={cartItem.itemName}
+                                            itemPrice={cartItem.itemPrice}
+                                            itemCategory={cartItem.itemCategory}
+                                            itemImageUrl={cartItem.itemImageUrl}
+                                            setCartItems={setCartItems} />
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                }
                 <div className="bg-[#dadada] mt-auto p-8 rounded-[1vmax] flex justify-between">
                     <div>
                         <h1 className="uppercase mb-4 font-semibold text-2xl">choose shipping mode</h1>

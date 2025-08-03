@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Counter from "./Counter"
 import { removeData } from "../../api"
 
-export default function CartItem({ itemName, itemPrice, itemCategory, itemImageUrl }) {
+export default function CartItem({ itemId, itemName, itemPrice, itemCategory, itemImageUrl, setCartItems }) {
 
     const [total, setTotal] = useState(itemPrice)
     const [counter, setCounter] = useState(1)
@@ -12,8 +12,9 @@ export default function CartItem({ itemName, itemPrice, itemCategory, itemImageU
     }, [counter, itemPrice])
 
     const removeItem = async () => {
-        const data = await removeData('/user/cart', { item: itemName })
+        const data = await removeData(`/user/cart/${itemId}`)
         console.log(data)
+        setCartItems(prev => prev.filter((cartItem) => cartItem.itemId !== itemId))
     }
 
     return (

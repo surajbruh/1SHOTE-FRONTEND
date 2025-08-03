@@ -22,7 +22,7 @@ export default function Home() {
 
     return (
         <>
-            <div className="wrapper">
+            <div className="wrapper bg-[#F2ECEC] ">
                 <Banner />
                 <div className="page relative w-screen h-screen flex flex-col">
                     <h1 className="uppercase font-bold text-5xl text-center my-8">choose your fit</h1>

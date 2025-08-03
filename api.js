@@ -33,14 +33,10 @@ export async function postData(endpoint, data) {
     }
 }
 
-export async function removeData(endpoint, data) {
+export async function removeData(endpoint) {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
         method: 'DELETE',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
     })
 
     if (!response.ok) {
