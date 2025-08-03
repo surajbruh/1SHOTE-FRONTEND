@@ -1,11 +1,24 @@
-import Counter from "../components/Counter"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import getData from "../../api"
+import CartItem from "../components/CartItem"
 
 export default function Cart() {
 
+    const [cartItems, setCartItems] = useState([])
+
+    useEffect(() => {
+        async function fetchCardData() {
+            const data = await getData('/user/cart')
+            setCartItems(data)
+        }
+        fetchCardData()
+    }, [])
+    console.log(cartItems)
+
     return (
         <>
-            <div className="checkout w-screen h-screen px-8 flex flex-col justify-center">
+            <div className="checkout w-screen min-h-screen px-8 py-8 flex flex-col justify-start">
                 <div className="uppercase font-bold flex items-center justify-between mb-16">
                     <h1 className="text-5xl leading-[30px]">my cart</h1>
                     <Link to="/">
@@ -25,66 +38,20 @@ export default function Cart() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="border-t">
-                            <td className="w-[30%] h-[10vmax] px-2 py-4">
-                                <div className="flex gap-4 p-2">
-                                    <div className="image min-w-[8vmax] h-[8vmax] overflow-hidden ">
-                                        <img
-                                            className="w-full h-full object-center object-cover"
-                                            src={"https://i.pinimg.com/1200x/31/b6/49/31b6499abddbc488722d8aabb7336cc7.jpg"} alt="" />
-                                    </div>
-                                    <div className="uppercase w-full h-full py-2">
-                                        <h1 className="font-semibold">product name</h1>
-                                        <h1 className="font-light">product category</h1>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="w-[15%] h-[10vmax] px-2 py-4 ">
-                                <div className="py-2 w-full h-full flex items-center justify-center">
-                                    <h1 className="uppercase font-semibold text-xl">$699</h1>
-                                </div>
-                            </td>
-                            <td className="w-[15%] px-4">
-                                <Counter />
-                            </td>
-                            <td className=" w-[25%] h-[10vmax] px-2 py-4"  >
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <h1 className="font-semibold text-xl uppercase">$699.00</h1>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr className="border-t">
-                            <td className="w-[30%] h-[10vmax] px-2 py-4">
-                                <div className="flex gap-4 p-2">
-                                    <div className="image min-w-[8vmax] h-[8vmax] overflow-hidden ">
-                                        <img
-                                            className="w-full h-full object-center object-cover"
-                                            src={"https://i.pinimg.com/1200x/31/b6/49/31b6499abddbc488722d8aabb7336cc7.jpg"} alt="" />
-                                    </div>
-                                    <div className="uppercase w-full h-full py-2">
-                                        <h1 className="font-semibold">product name</h1>
-                                        <h1 className="font-light">product category</h1>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="w-[15%] h-[10vmax] px-2 py-4 ">
-                                <div className="py-2 w-full h-full flex items-center justify-center">
-                                    <h1 className="uppercase font-semibold text-xl">$699</h1>
-                                </div>
-                            </td>
-                            <td className="w-[15%] px-4">
-                                <Counter />
-                            </td>
-                            <td className=" w-[25%] h-[10vmax] px-2 py-4"  >
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <h1 className="font-semibold text-xl uppercase">$699.00</h1>
-                                </div>
-                            </td>
-                        </tr>
+                        {cartItems.map((cartItem, index) => {
+                            return (
+                                <CartItem
+                                    key={index}
+                                    itemName={cartItem.itemName}
+                                    itemPrice={cartItem.itemPrice}
+                                    itemCategory={cartItem.itemCategory}
+                                    itemImageUrl={cartItem.itemImageUrl} />
+                            )
+                        })}
                     </tbody>
                 </table>
 
-                <div className="bg-[#dadada] p-8 rounded-[1vmax] flex justify-between">
+                <div className="bg-[#dadada] mt-auto p-8 rounded-[1vmax] flex justify-between">
                     <div>
                         <h1 className="uppercase mb-4 font-semibold text-2xl">choose shipping mode</h1>
                         <ul>
@@ -110,7 +77,7 @@ export default function Cart() {
                             </li>
                         </ul>
                     </div>
-                    <div className=" w-max flex flex-col items-center justify-center">
+                    <div className="w-max flex flex-col items-center justify-center">
                         <table className="w-full h-max mb-4">
                             <tbody className="font-semibold flex flex-col w-full p-2">
                                 <tr className="uppercase mb-2 w-full flex justify-between">

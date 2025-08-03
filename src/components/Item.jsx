@@ -16,10 +16,12 @@ export default function Item({ itemCategory, itemName, itemPrice, itemImage, set
             addBtnRef.current.style.backgroundColor = ""
         }
 
-        const data = await postData('/cart', {
+        //send a post req to /user/cart endpoint
+        const data = await postData('/user/cart', {
             itemCategory,
             itemName,
-            itemPrice
+            itemPrice,
+            itemImage
         })
         console.log(data)
 

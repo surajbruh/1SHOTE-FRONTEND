@@ -18,12 +18,6 @@ export default function Home() {
 
     const handleCardClick = async (id, category, name, price) => {
         setActiveCardId(prev => (prev === id ? null : id))
-        const data = await postData('/item', {
-            category,
-            name,
-            price
-        })
-        console.log(data)
     }
 
     return (
