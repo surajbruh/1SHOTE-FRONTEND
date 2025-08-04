@@ -15,6 +15,9 @@ export default function Navbar() {
                         <Link to="/cart"><i className="ri-shopping-cart-line"></i></Link>
                     </li>
                     <li>
+                        <Link to="/wishlist"><i className="ri-heart-line"></i></Link>
+                    </li>
+                    <li>
                         <Link to=""><i className="ri-user-line"></i></Link>
                     </li>
                 </ul>

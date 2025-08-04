@@ -29,7 +29,22 @@ export default function Item({ itemCategory, itemId, itemName, itemPrice, itemIm
     }
 
     const [addToCart, setAddToCart] = useState(false)
+    const [addToWishlist, setAddToWishlist] = useState(false)
     const addBtnRef = useRef(null)
+
+    const handleWishlistItem = async () => {
+        setAddToWishlist(!addToWishlist)
+
+        //send a post req to /user/wishlist endpoint
+        const data = await postData('/user/wishlist', {
+            itemId,
+            itemName,
+            itemPrice,
+            itemCategory,
+            itemImage
+        })
+        console.log(data)
+    }
 
     return (
         <>
@@ -58,7 +73,9 @@ export default function Item({ itemCategory, itemId, itemName, itemPrice, itemIm
                                 ref={addBtnRef}
                                 onClick={handleBtn}
                                 className="uppercase font-bold text-xl px-4 py-2 bg-[black] active:bg-[#353535] text-white">{addToCart ? "added" : "add to cart"} </button>
-                            <button className="uppercase font-bold text-xl px-4 py-2 border bg-white active:bg-[#cecece] ">add to wishlist</button>
+                            <button
+                                onClick={handleWishlistItem}
+                                className="uppercase font-bold text-xl px-4 py-2 border bg-white active:bg-[#cecece] ">{addToWishlist ? "added to wishlist" : "add to wishlist"}</button>
                         </div>
                     </div>
                 </div>
