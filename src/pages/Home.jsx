@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react"
-import getData, { postData } from "../../api"
+import { useState, useEffect, createContext } from "react"
+import getData from "../../api"
 import Banner from "../components/Banner"
 import Card from "../components/Card"
 
 export default function Home() {
 
     const [items, setItems] = useState([])
+    const [addedItems, setAddedItems] = useState([])
     const [activeCardId, setActiveCardId] = useState(null)
 
     useEffect(() => {
         async function data() {
             const data = await getData("/")
-            setItems(data)
+            setItems(data.items)
+            setAddedItems(data.cartItem)
+            console.log(data)
         }
         data()
     }, [])
@@ -38,7 +41,8 @@ export default function Home() {
                                     image={item.imageUrl}
                                     isActive={activeCardId === item._id}
                                     setActive={setActiveCardId}
-                                    onCardClick={handleCardClick} />
+                                    onCardClick={handleCardClick}
+                                    cartItems={addedItems} />
                             )
                         })}
                     </div>

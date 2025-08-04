@@ -1,7 +1,6 @@
-import { preinit } from "react-dom"
 import Item from "./Item"
 
-export default function Card({ id, category, name, price, image, isActive, onCardClick, setActive }) {
+export default function Card({ id, category, name, price, image, isActive, onCardClick, setActive, cartItems }) {
 
     const handleClick = async () => {
         onCardClick(id, category, name, price)
@@ -30,7 +29,8 @@ export default function Card({ id, category, name, price, image, isActive, onCar
                     itemName={name}
                     itemPrice={price}
                     itemImage={image}
-                    setActive={setActive} />}
+                    setActive={setActive}
+                    cartItems={cartItems} />}
             </div>
         </>
     )
