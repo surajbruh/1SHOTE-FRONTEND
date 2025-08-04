@@ -6,6 +6,10 @@ import CartItem from "../components/CartItem"
 export default function Cart() {
 
     const [cartItems, setCartItems] = useState([])
+    const [totals, setTotals] = useState({}) // for cartItem component
+    const [selectedShipping, setSelectedShipping] = useState("store")
+    const deliveryFee = 80 //in INR
+    const [total, setTotal] = useState(null) //net total
 
     useEffect(() => {
         //fetches all item added to cart
@@ -15,7 +19,20 @@ export default function Cart() {
         }
         fetchCardData()
     }, [])
+
+    const updateItemTotal = (itemId, newTotal) => {
+        setTotals(prev => ({ ...prev, [itemId]: newTotal }))
+    }
+
+    const subtotal = Object.values(totals).reduce((acc, val) => acc + val, 0)
+
     console.log(cartItems)
+    console.log('component re-rendered')
+
+    useEffect(() => {
+        const newTotal = ((selectedShipping === "store" ? 0 : deliveryFee) + subtotal).toFixed(2)
+        setTotal(newTotal)
+    }, [selectedShipping, subtotal])
 
     return (
         <>
@@ -54,7 +71,8 @@ export default function Cart() {
                                             itemPrice={cartItem.itemPrice}
                                             itemCategory={cartItem.itemCategory}
                                             itemImageUrl={cartItem.itemImageUrl}
-                                            setCartItems={setCartItems} />
+                                            setCartItems={setCartItems}
+                                            updateItemTotal={updateItemTotal} />
                                     )
                                 })}
                             </tbody>
@@ -65,20 +83,28 @@ export default function Cart() {
                         <h1 className="uppercase mb-4 font-semibold text-2xl">choose shipping mode</h1>
                         <ul>
                             <li className="mb-2">
-                                <div className="flex gap-2 items-center font-medium uppercase">
+                                <div
+                                    onClick={() => setSelectedShipping("store")}
+                                    className="flex gap-2 items-center font-medium uppercase">
                                     <input
-                                        className=""
-                                        type="checkbox" name="" id="" />
+                                        readOnly={true}
+                                        checked={selectedShipping === "store"}
+                                        className="check"
+                                        type="radio" name="" id="" />
                                     <h1>store pickup</h1>
                                     <h1 className="text-[14px] ">(in 20min) </h1>
                                     <h1 className="text-[14px] ">free</h1>
                                 </div>
                             </li>
                             <li className="mb-2">
-                                <div className="flex gap-2 items-center font-medium uppercase">
+                                <div
+                                    onClick={() => setSelectedShipping("home")}
+                                    className="flex gap-2 items-center font-medium uppercase">
                                     <input
-                                        className=""
-                                        type="checkbox" name="" id="" />
+                                        readOnly={true}
+                                        checked={selectedShipping === "home"}
+                                        className="check"
+                                        type="radio" name="" id="" />
                                     <h1>delivery at home</h1>
                                     <h1 className="text-[14px] ">(in 45min) </h1>
                                     <h1 className="text-[14px] ">$10</h1>
@@ -91,23 +117,23 @@ export default function Cart() {
                             <tbody className="font-semibold flex flex-col w-full p-2">
                                 <tr className="uppercase mb-2 w-full flex justify-between">
                                     <td>subtotal:</td>
-                                    <td>$699</td>
+                                    <td>₹{subtotal.toFixed(2)}</td>
                                 </tr>
                                 <tr className="uppercase mb-2 w-full flex justify-between">
                                     <td>shipping:</td>
-                                    <td>free</td>
+                                    <td>{selectedShipping === "store" ? "Free" : `₹${deliveryFee}`} </td>
                                 </tr>
                             </tbody>
                             <tfoot className="font-semibold flex flex-col w-full p-2 border-t">
                                 <tr className="uppercase mb-2 w-full flex justify-between">
                                     <td>total</td>
-                                    <td>$699</td>
+                                    <td>₹{total}</td>
                                 </tr>
                             </tfoot>
                         </table>
                         <div className="uppercase font-bold bg-red-500 text-2xl text-white px-10 py-2 w-max flex gap-4">
                             <h1>checkout</h1>
-                            <h1>$699</h1>
+                            <h1>₹{total}</h1>
                         </div>
                     </div>
                 </div>

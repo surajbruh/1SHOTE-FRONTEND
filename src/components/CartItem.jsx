@@ -2,13 +2,16 @@ import { useEffect, useState } from "react"
 import Counter from "./Counter"
 import { removeData } from "../../api"
 
-export default function CartItem({ itemId, itemName, itemPrice, itemCategory, itemImageUrl, setCartItems }) {
+export default function CartItem({ itemId, itemName, itemPrice, itemCategory, itemImageUrl, setCartItems, updateItemTotal }) {
 
     const [total, setTotal] = useState(itemPrice)
     const [counter, setCounter] = useState(1)
 
     useEffect(() => {
-        setTotal(itemPrice * counter)
+        const newTotal = itemPrice * counter
+        setTotal(newTotal)
+        updateItemTotal(itemId, newTotal)
+
     }, [counter, itemPrice])
 
     const removeItem = async () => {
@@ -43,7 +46,7 @@ export default function CartItem({ itemId, itemName, itemPrice, itemCategory, it
                 </td>
                 <td className=" w-[25%] h-[10vmax] px-2 py-4"  >
                     <div className="w-full h-full flex justify-center items-center">
-                        <h1 className="font-semibold text-xl uppercase">{total.toFixed(2)}</h1>
+                        <h1 className="total font-semibold text-xl uppercase">{total.toFixed(2)}</h1>
                     </div>
                 </td>
                 <td>
