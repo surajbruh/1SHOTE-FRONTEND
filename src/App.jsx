@@ -4,6 +4,7 @@ import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import Wishlist from "./pages/wishlist"
 import { Routes, Route } from "react-router-dom"
+import Profile from "./pages/Profile"
 
 export default function App() {
 
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   )

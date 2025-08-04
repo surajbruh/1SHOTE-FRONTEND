@@ -18,7 +18,7 @@ export default function Navbar() {
                         <Link to="/wishlist"><i className="ri-heart-line"></i></Link>
                     </li>
                     <li>
-                        <Link to=""><i className="ri-user-line"></i></Link>
+                        <Link to="/profile"><i className="ri-user-line"></i></Link>
                     </li>
                 </ul>
             </div>

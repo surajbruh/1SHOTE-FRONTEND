@@ -20,13 +20,13 @@ export default function Wishlist() {
 
     return (
         <>
-            <div className="wrapper w-screen h-screen">
+            <div className="wrapper bg-[#f2ecec] w-screen h-screen">
                 <div className=" px-8 py-4 flex items-center justify-between">
-                    <h1 className="uppercase font-bold text-5xl">your wishlist</h1>
+                    <h1 className="uppercase font-bold text-5xl">my wishlist</h1>
                     <Link to="/">
                         <div className="w-max flex justify-center items-center gap-4 px-8 py-2 rounded-[50px] h-max bg-black active:bg-[#242424] text-white ">
                             <i className="ri-arrow-left-s-line text-2xl"></i>
-                            <div className="uppercase text-xl">continue shopping</div>
+                            <div className="uppercase font-bold text-xl">continue shopping</div>
                         </div>
                     </Link>
                 </div>
