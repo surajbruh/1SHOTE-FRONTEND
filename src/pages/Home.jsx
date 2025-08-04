@@ -6,14 +6,16 @@ import Card from "../components/Card"
 export default function Home() {
 
     const [items, setItems] = useState([])
-    const [addedItems, setAddedItems] = useState([])
+    const [userCartItems, setUserCartItems] = useState([])
+    const [wishlistedItems, setWishlistedItems] = useState([])
     const [activeCardId, setActiveCardId] = useState(null)
 
     useEffect(() => {
         async function data() {
             const data = await getData("/")
             setItems(data.items)
-            setAddedItems(data.cartItem)
+            setUserCartItems(data.cartItem)
+            setWishlistedItems(data.wishlistedItems)
             console.log(data)
         }
         data()
@@ -42,7 +44,10 @@ export default function Home() {
                                     isActive={activeCardId === item._id}
                                     setActive={setActiveCardId}
                                     onCardClick={handleCardClick}
-                                    cartItems={addedItems} />
+                                    cartItems={userCartItems}
+                                    setCartItems={setUserCartItems}
+                                    wishlistedItems={wishlistedItems}
+                                    setWishlistedItems={setWishlistedItems} />
                             )
                         })}
                     </div>

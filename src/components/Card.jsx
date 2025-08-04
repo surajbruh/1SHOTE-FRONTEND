@@ -1,6 +1,6 @@
 import Item from "./Item"
 
-export default function Card({ id, category, name, price, image, isActive, onCardClick, setActive, cartItems }) {
+export default function Card({ id, category, name, price, image, isActive, onCardClick, setActive, cartItems, setCartItems, wishlistedItems, setWishlistedItems }) {
 
     const handleClick = async () => {
         onCardClick(id, category, name, price)
@@ -30,7 +30,10 @@ export default function Card({ id, category, name, price, image, isActive, onCar
                     itemPrice={price}
                     itemImage={image}
                     setActive={setActive}
-                    cartItems={cartItems} />}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                    wishlistedItems={wishlistedItems}
+                    setWishlistedItems={setWishlistedItems} />}
             </div>
         </>
     )
