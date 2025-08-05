@@ -1,7 +1,13 @@
 import { useState } from "react"
 import { postData } from "../../api"
+import { ToastContainer } from 'react-toastify';
+import notify from "../utilitis/notification";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+
+    const navigate = useNavigate()
+
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)
 
@@ -17,7 +23,14 @@ export default function Login() {
 
         const data = await postData('/user/login', form)
 
-        if (data.status) alert('user logged in')
+        //notification
+        const { status, message } = data
+        if (status) {
+            notify(true, message)
+            // navigate('/')
+        } else {
+            notify(false, message)
+        }
     }
 
     const handlePassword = (e) => {
@@ -27,6 +40,18 @@ export default function Login() {
 
     return (
         <div className="wrapper w-screen h-screen flex items-center bg-[var(--background-color)] ">
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
             <form
                 className="form w-max h-max border border-[#dadada] m-auto px-8 pb-16 rounded-2xl"
                 onSubmit={handleForm}>

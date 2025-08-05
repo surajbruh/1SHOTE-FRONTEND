@@ -26,10 +26,22 @@ export async function postData(endpoint, data) {
 
     //if response is json return json or else text
     const contentType = response.headers.get("Content-Type");
-    if (contentType && contentType.includes("application/json")) {
-        return response.json();
-    } else {
-        return response.text();
+    const body = contentType && contentType.includes("application/json")
+        ? await response.json()
+        : await response.text();
+
+    console.log(response, body)
+    if (!response.ok) {
+        return {
+            status: false,
+            message: body?.message || 'Something went wrong',
+            error: body?.error || null
+        }
+    }
+
+    return {
+        status: true,
+        ...body
     }
 }
 
