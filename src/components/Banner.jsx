@@ -3,7 +3,7 @@ import Navbar from "./Navbar"
 export default function Banner() {
     return (
         <>
-            <div className="banner bg-[#f2ecec] w-screen h-screen">
+            <div className="banner w-screen h-screen">
                 <Navbar />
                 <div className="w-full h-full flex gap-8 px-8 items-center">
                     <div>

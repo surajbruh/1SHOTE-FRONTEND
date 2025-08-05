@@ -4,8 +4,9 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="navbar w-full fixed top-0 z-10 backdrop-blur-[4px] py-4 px-8 flex items-center justify-between">
-                <ul className="uppercase font-bold text-3xl flex gap-4">
+            <div className="navbar w-full fixed top-0 z-10 backdrop-blur-[4px] py-4 px-8 flex gap-8 items-center justify-between">
+                <h1 className="uppercase font-bold text-[3vmax] leading-0 text-center py-8 font-[faroe]" >1shote</h1>
+                <ul className="ml-auto uppercase font-bold text-3xl flex gap-4">
                     <li><Link to="">home</Link></li>
                     <li><Link to="/login">login</Link></li>
                     <li><Link to="/signup">signup</Link></li>
