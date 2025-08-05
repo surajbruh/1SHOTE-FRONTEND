@@ -16,7 +16,8 @@ export default function Login() {
         console.log(form)
 
         const data = await postData('/user/login', form)
-        console.log(data)
+
+        if (data.status) alert('user logged in')
     }
 
     const handlePassword = (e) => {
