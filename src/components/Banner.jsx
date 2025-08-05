@@ -1,10 +1,10 @@
 import Navbar from "./Navbar"
 
-export default function Banner() {
+export default function Banner({ show }) {
     return (
         <>
             <div className="banner w-screen h-screen">
-                <Navbar />
+                <Navbar show={show} />
                 <div className="w-full h-full flex gap-8 px-8 items-center">
                     <div>
                         <div className="w-max mb-8">

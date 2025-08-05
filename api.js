@@ -59,3 +59,22 @@ export async function removeData(endpoint) {
     }
     return response.json()
 }
+
+export async function verifyUser() {
+    const response = await fetch(`${BASE_URL}/verify`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+
+    const data = await response.json()
+    if (!response.ok) {
+        return ({
+            message: data.message,
+            status: false
+        })
+    }
+    return {
+        ...data,
+        status: true
+    }
+}
