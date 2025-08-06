@@ -2,11 +2,14 @@ import { useState } from "react"
 import { postData } from "../../api"
 import { ToastContainer } from 'react-toastify';
 import notify from "../utilitis/notification";
-import { useNavigate } from "react-router-dom";
+import { replace, useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
 
     const navigate = useNavigate()
+
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
 
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)
@@ -25,7 +28,7 @@ export default function Login() {
         const { status, message } = data
         if (status) {
             notify(true, message)
-            // navigate('/')
+            navigate(from, { replace: true })
         } else {
             notify(false, message)
         }

@@ -26,7 +26,7 @@ export default function Signup() {
         console.log(status, message)
         if (status) {
             notify(true, message)
-            // navigate('/login')
+            navigate('/login')
         } else {
             notify(false, message)
         }
