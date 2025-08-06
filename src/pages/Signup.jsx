@@ -38,7 +38,7 @@ export default function Signup() {
     }
 
     return (
-        <div className="wrapper w-screen h-screen flex items-center bg-[var(--background-color)] ">
+        <div className="wrapper w-screen h-screen flex flex-col justify-center items-center bg-[var(--background-color)] ">
             <ToastContainer
                 position="top-right"
                 autoClose={5000}

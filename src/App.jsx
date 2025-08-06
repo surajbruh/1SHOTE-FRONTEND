@@ -2,7 +2,7 @@ import Home from "./pages/Home"
 import Cart from "./pages/Cart"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
-import Wishlist from "./pages/wishlist"
+import Wishlist from "./pages/Wishlist"
 import { Routes, Route } from "react-router-dom"
 import Profile from "./pages/Profile"
 

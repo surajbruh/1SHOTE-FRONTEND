@@ -1,7 +1,4 @@
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
-import { verifyUser } from "../../api"
-import { useState } from "react"
 
 export default function Navbar({ show }) {
 
@@ -19,17 +16,20 @@ export default function Navbar({ show }) {
                         </>
                     }
                 </ul>
-                <ul className="uppercase bg-black text-white w-max px-4 py-2 rounded-[50px] font-bold text-3xl flex gap-8">
-                    <li>
-                        <Link to="/cart"><i className="ri-shopping-cart-line"></i></Link>
-                    </li>
-                    <li>
-                        <Link to="/wishlist"><i className="ri-heart-line"></i></Link>
-                    </li>
-                    <li>
-                        <Link to="/profile"><i className="ri-user-line"></i></Link>
-                    </li>
-                </ul>
+                {
+                    !show &&
+                    <ul className="uppercase bg-black text-white w-max px-4 py-2 rounded-[50px] font-bold text-3xl flex gap-8">
+                        <li>
+                            <Link to="/cart"><i className="ri-shopping-cart-line"></i></Link>
+                        </li>
+                        <li>
+                            <Link to="/wishlist"><i className="ri-heart-line"></i></Link>
+                        </li>
+                        <li>
+                            <Link to="/profile"><i className="ri-user-line"></i></Link>
+                        </li>
+                    </ul>
+                }
             </div>
         </>
     )

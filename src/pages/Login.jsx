@@ -19,8 +19,6 @@ export default function Login() {
             username,
             password
         }
-        console.log(form)
-
         const data = await postData('/user/login', form)
 
         //notification

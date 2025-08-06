@@ -30,7 +30,7 @@ export async function postData(endpoint, data) {
         ? await response.json()
         : await response.text();
 
-    console.log(response, body)
+    console.log(body)
     if (!response.ok) {
         return {
             status: false,
@@ -61,20 +61,20 @@ export async function removeData(endpoint) {
 }
 
 export async function verifyUser() {
-    const response = await fetch(`${BASE_URL}/verify`, {
-        method: 'GET',
-        credentials: 'include'
-    })
+    try {
+        const response = await fetch(`${BASE_URL}/verify`, {
+            method: 'GET',
+            credentials: 'include'
+        })
+        const data = await response.json()
 
-    const data = await response.json()
-    if (!response.ok) {
+        return response.ok ? { ...data } : { message: data.message, status: false }
+
+    } catch (error) {
         return ({
-            message: data.message,
+            message: error.message || "Network error",
             status: false
         })
     }
-    return {
-        ...data,
-        status: true
-    }
+
 }
