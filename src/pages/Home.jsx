@@ -50,7 +50,7 @@ export default function Home() {
                     <div className="page1 w-[80%] mx-auto h-max flex flex-wrap gap-8 justify-center content-center p-4">
                         {
                             show ?
-                                <h1 className="uppercase font-light text-3xl text-center my-8">please signup or login to see your collections</h1>
+                                <h1 className="uppercase font-light text-3xl text-center my-8">please signup or login to see our collections</h1>
                                 :
                                 items.map((item) => {
                                     return (
