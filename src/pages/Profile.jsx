@@ -23,7 +23,7 @@ export default function Profile() {
 
     return (
         <>
-            <div className="wrapper w-full h-full px-8 py-4">
+            <div className="wrapper bg-[#F2ECEC] w-screen h-screen px-8 py-4">
                 <div className="mb-4" >
                     <h1 className="uppercase font-bold text-5xl">{user.username ? user.username : "username goes here"}</h1>
                     <h1 className="uppercase font-light text-xl">{user.email ? user.email : "user's email goes here"}</h1>

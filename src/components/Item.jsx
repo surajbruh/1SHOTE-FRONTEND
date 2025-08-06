@@ -71,7 +71,7 @@ export default function Item({ itemCategory, itemId, itemName, itemPrice, itemIm
             <div className="m-auto w-max h-full flex gap-4 justify-center items-center">
                 <div className="image w-[20vmax] h-[500px]">
                     <img
-                        className="w-full h-full object-cover object-center"
+                        className="w-full h-full object-contain object-center"
                         src={itemImage} alt="" />
                 </div>
                 <div className="relative bg-amber-50 w-max h-[500px] px-8 py-4">

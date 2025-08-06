@@ -45,7 +45,7 @@ export default function Home() {
         <>
             <div className="wrapper bg-[var(--background-color)] ">
                 <Banner show={show} />
-                <div className="page relative w-screen h-screen flex flex-col">
+                <div className="page relative w-screen min-h-screen flex flex-col pb-4">
                     <h1 className="uppercase font-bold text-5xl text-center my-8">choose your fit</h1>
                     <div className="page1 w-[80%] mx-auto h-max flex flex-wrap gap-8 justify-center content-center p-4">
                         {
