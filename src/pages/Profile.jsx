@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import getData from "../../api"
 import { useNavigate } from "react-router-dom"
+import notify from "../utilitis/notification"
 
 export default function Profile() {
 
@@ -18,7 +19,13 @@ export default function Profile() {
 
     const handleLogout = async () => {
         const data = await getData('/user/logout')
-        navigate('/')
+        const { status, message } = data
+        console.log(data)
+        if (status) {
+            notify(status, message)
+            navigate('/')
+        }
+
     }
 
     return (

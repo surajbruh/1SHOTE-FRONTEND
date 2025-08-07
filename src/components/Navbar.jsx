@@ -15,7 +15,6 @@ export default function Navbar({ show }) {
                     {
                         show &&
                         <>
-                            <li><Link to="">home</Link></li>
                             <li><Link to="/login">login</Link></li>
                             <li><Link to="/signup">signup</Link></li>
                         </>

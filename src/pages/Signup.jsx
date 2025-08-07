@@ -54,7 +54,8 @@ export default function Signup() {
             <form
                 className="form w-max h-max border border-[#dadada] m-auto px-8 pb-16 rounded-2xl"
                 onSubmit={handleForm}>
-                <h1 className="uppercase font-bold text-[3vmax] leading-[3vmax] text-center py-8 font-[faroe]" >1shote</h1>
+                {/* <h1 className="uppercase font-bold text-[3vmax] leading-[3vmax] text-center py-8 font-[faroe]" >1shote</h1> */}
+                <h1 className="uppercase font-bold text-[3vmax] leading-[3vmax] text-center my-8 font-[faroe]" >signup</h1>
                 <div className="mb-8">
                     <div className="flex items-center gap-4 text-xl border-b px-[1vmax] py-[0.5vmax] mb-[1vmax] ">
                         <i className="ri-user-line"></i>
@@ -91,7 +92,7 @@ export default function Signup() {
                         </button>
                     </div>
                 </div>
-                <input className="uppercase w-full font-bold bg-black text-white px-4 py-2" type="submit" />
+                <input className="uppercase w-full font-bold bg-black text-white px-4 py-2" value={"sign up"} type="submit" />
             </form>
         </div>
     )

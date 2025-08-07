@@ -2,6 +2,8 @@ import { useState, useEffect, createContext } from "react"
 import getData, { verifyUser } from "../../api"
 import Banner from "../components/Banner"
 import Card from "../components/Card"
+import notify from "../utilitis/notification"
+import { ToastContainer } from "react-toastify"
 
 export default function Home() {
 
@@ -10,7 +12,21 @@ export default function Home() {
     const [wishlistedItems, setWishlistedItems] = useState([])
     const [activeCardId, setActiveCardId] = useState(null)
 
+    const [show, setShow] = useState(true)
+
     useEffect(() => {
+        const verify = async () => {
+            const data = await verifyUser()
+            console.log(data)
+            const { status, message } = data
+            if (status) {
+                setShow(false)
+            } else {
+                notify(status, message)
+            }
+        }
+        verify()
+
         async function data() {
             const data = await getData("/")
             setItems(data.items)
@@ -19,21 +35,7 @@ export default function Home() {
             console.log(data)
         }
         data()
-    }, [])
 
-
-
-    const [show, setShow] = useState(true)
-    useEffect(() => {
-        const verify = async () => {
-            const data = await verifyUser()
-            console.log(data)
-            const { status, message } = data
-            if (status) {
-                setShow(false)
-            }
-        }
-        verify()
     }, [])
 
 
@@ -44,6 +46,7 @@ export default function Home() {
     return (
         <>
             <div className="wrapper bg-[var(--background-color)] ">
+                <ToastContainer />
                 <Banner show={show} />
                 <div className="page relative w-screen min-h-screen flex flex-col pb-4">
                     <h1 className="uppercase font-bold text-5xl text-center my-8">choose your fit</h1>
